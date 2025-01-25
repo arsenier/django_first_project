@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <div class="comparison-table"></div>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced page</title>
+</head>
+<body>
+<header>
+    <h1>Welcome to {{ page_title }}</h1>
+    <nav>
+        <ul>
+            <li><a href="#intro">Intro</a></li> <!--Создание кнопки с ссылкой на предмет intro-->
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="#table">Table</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="intro"> <!--Схож с див, только секции страницы, для ее удобного деления-->
+        <h2>Introduction</h2>
+        <p>This page demonstrates an advanced Django app using a single HTML file.</p>
+        <ul>
+            {% for item in example_data.list %} <!--Цикл для считывания данных из массива-->
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="feedback"> <!--Айди более подробное описание класса?-->
+        <h2>Submit Feedback</h2>
+        <form method="post"> <!--Кнопка для отправки данных внутри заполненной формы-->
+            <!--Форма отправляет защищенные данные на БД-->
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+
+        <h3>Feedback Received</h3>
+        {% if feedbacks %}
+        <ul>
+            {% for feedback in feedbacks %}
+            <li><strong>{{ feedback.name }}</strong>: {{ feedback.message }}</li> <!--Strong - жирный текст-->
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No feedback yet.</p>
+        {% endif %}
+    </section>
+
+    <section id="table">
+        <h2>Comparisson table</h2>
+        <table>
+            <thead> <!--Заголовок-->
+                <tr> <!--Ряд-->
+                    <th>Feature</th> <!--Ячейка-->
+                    <th>Description</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in example_data.table_data %}
+                <tr>
+                    <td>{{ row.Feature }}</td>
+                    <td>{{ row.Django }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+
+</body>
+</html>

@@ -16,8 +16,17 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Создание миграции (если необходимо)
+
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
 ### Запуск сервера
 
 ```
-python manage.py runserver
+python3 manage.py runserver
 ```
+
+После этого по адресу http://127.0.0.1:8000/ вы увидите простую страницу с таблицей сравнения и сеткой контейнеров.
