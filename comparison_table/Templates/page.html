@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <div class="comparison-table"></div>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django vs PyQT5</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to the Django App!</h1>
+        <p>Hello! This app greets and shows a comprasion of Django and PyQt5 bellow:</p>
+    </div>
+
+    <div class="comparison-table">
+        <h2>Compariosn Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Django</th>
+                    <th>PyQT5</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in comparison_data %}
+                <tr>
+                    <td>{{row.Feature}}</td>
+                    <td>{{row.Django}}</td>
+                    <td>{{row.PyQT5}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="demo-grid">
+            <h2>Grid Demo</h2>
+            <div class="grid-container">
+                <div class="grid-item">Item 1</div>
+                <div class="grid-item">Item 2</div>
+                <div class="grid-item">Item 3</div>
+                <div class="grid-item">Item 4</div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
